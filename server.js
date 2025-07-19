@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());        // imp.
 
-app.listen(PORT, ()=>{
+app.listen(process.env.PORT, ()=>{
     console.log(`server is running on ${process.env.PORT}`);
     connectDB();
 });
