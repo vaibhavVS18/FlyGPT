@@ -10,7 +10,12 @@ const app = express();
 // const PORT = 8080;
 
 app.use(express.json());
-app.use(cors());        // imp.
+// app.use(cors());        // imp.
+app.use(cors({
+origin: ["http://localhost:5173", "https://fly-gpt-frontend.vercel.app/"],
+  credentials: true
+}));
+
 
 app.listen(process.env.PORT, ()=>{
     console.log(`server is running on ${process.env.PORT}`);
