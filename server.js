@@ -8,7 +8,6 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-import cors from "cors";
 
 app.use(cors({
   origin: ["http://localhost:5173", "https://fly-gpt-frontend.vercel.app"],
