@@ -6,16 +6,15 @@ import chatRoutes from "./routes/chat.js";
 
 const app = express();
 
+// Middleware
 app.use(express.json());
+app.use(cors({
+  origin: ["http://localhost:5173", "https://fly-gpt-frontend.vercel.app"],
+  methods: ["GET", "POST", "OPTIONS"],
+  credentials: true,
+}));
 
-app.use(
-  cors({
-    origin: ["http://localhost:5173", "https://fly-gpt-frontend.vercel.app/"],
-    credentials: true,
-  })
-);
-
-// ✅ MongoDB connection before listening
+// MongoDB connection + start server
 const startServer = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI);
@@ -31,7 +30,7 @@ const startServer = async () => {
 
 startServer();
 
-// Test route
+// Routes
 app.get("/", (req, res) => {
   res.send("hello");
 });
